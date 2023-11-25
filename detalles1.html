@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>About</title>
+		<meta charset="utf-8">
+		<meta name = "format-detection" content = "telephone=no" />
+		<link rel="icon" href="images/favicon.ico">
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery-migrate-1.2.1.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/superfish.js"></script>
+		<script src="js/jquery.ui.totop.js"></script>
+		<script src="js/jquery.equalheights.js"></script>
+		<script src="js/jquery.mobilemenu.js"></script>
+		<script src="js/jquery.easing.1.3.js"></script>
+		<script>
+			$(document).ready(function(){
+				$().UItoTop({ easingType: 'easeOutQuart' });
+			});
+		</script>
+	</head>
+	<body class="" id="top">
+		<div class="main">
+<!--==============================header=================================-->
+			<header>
+				<div class="menu_block">
+					<div class="container_12">
+						<div class="grid_12">
+							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+								<ul class="sf-menu">
+									<li><a href="index.html">Inicio</a></li>
+									<li><a href="index-1.html">Acerca de</a></li>
+									<li><a href="index-2.html">Carros</a></li>
+									<li><a href="index-3.html">Servicios</a></li>
+									<li><a href="index-4.html">Contactos</a></li>
+								</ul>
+							</nav>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="container_12">
+					<div class="grid_12">
+						<h1>
+							<a href="index.html">
+								
+							</a>
+						</h1>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</header>
+<!--==============================Content=================================-->
+			<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - April 07, 2014!</div>
+				<div class="container_12">
+					<div class="grid_7">
+						<h3>DETALLES DEL SERVICIO</h3>
+						<img src="images/churro.png" alt="" class="img_inner fleft">
+						<div id="details-container">
+                            <p><strong>DE:</strong> <span id="from-details"></span></p>
+                            <p><strong>PARA:</strong> <span id="to-details"></span></p>
+                            <p><strong>FECHA:</strong> <span id="date-details"></span></p>
+                            <p><strong>SERVICIO:</strong> <span id="service-details"></span></p>
+                            <p><strong>PRECIO:</strong> <span id="price-details"></span></p>
+                        </div>
+                    
+                        <script>
+                            // Función para obtener parámetros de la URL
+                            function getParameterByName(name, url) {
+                                if (!url) url = window.location.href;
+                                name = name.replace(/[\[\]]/g, '\\$&');
+                                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                                    results = regex.exec(url);
+                                if (!results) return null;
+                                if (!results[2]) return '';
+                                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                            }
+                    
+                            // Obtener parámetros de la URL
+                            var from = getParameterByName('from');
+                            var to = getParameterByName('to');
+                            var date = getParameterByName('date');
+                            var servicio = getParameterByName('servicio');
+                            var precio = getParameterByName('precio');
+                    
+                            // Mostrar detalles en la página
+                            document.getElementById('from-details').innerText = from;
+                            document.getElementById('to-details').innerText = to;
+                            document.getElementById('date-details').innerText = date;
+                            document.getElementById('service-details').innerText = servicio;
+                            document.getElementById('price-details').innerText = precio;
+                        </script>
+					</div>
+
+                    
+					<div class="grid_4 prefix_1">
+						<h3>INFORMACION DEL PASAJERO</h3>
+						<ul class="list li">
+							<li class="list_count">1</li>
+							<li class="extra_wrapper">
+								<div class="text1 color2"><a href="#">Nombre (completo) *</a></div>
+                                <input name="Name" placeHolder="Nombre:" type="text" data-constraints='@NotEmpty @Required @AlphaSpecial'>
+								<br>
+                                <br>
+                                <br>
+							</li>
+						</ul>
+						<ul class="list li">
+							<li class="list_count">2</li>
+							<li class="extra_wrapper">
+								<div class="text1 color2"><a href="#">Telefono Celular</a></div>
+								<input name="Phone" placeHolder="Telefono:" type="number" data-constraints="@NotEmpty @Required ">
+							</li>
+						</ul>
+                        <button onclick="enviarMensajeWhatsApp()">Enviar WhatsApp</button>
+					</div>
+					<div class="clear"></div>
+                    <script>
+                        function enviarMensajeWhatsApp() {
+                        // Obtener los detalles del servicio y del pasajero
+                        var from = document.getElementById('from-details').innerText;
+                        var to = document.getElementById('to-details').innerText;
+                        var date = document.getElementById('date-details').innerText;
+                        var servicio = document.getElementById('service-details').innerText;
+                        var precio = document.getElementById('price-details').innerText;
+                        var nombre = document.querySelector('input[name="Name"]').value;
+                        var telefono = document.querySelector('input[name="Phone"]').value;
+
+                        // Verificar que se haya ingresado un número de teléfono y un nombre
+                        if (!nombre || !telefono) {
+                            alert("Por favor, ingresa el nombre y el número de teléfono antes de enviar la solicitud.");
+                            return;
+                        }
+
+                        // Construir el mensaje
+                        var mensaje = "Detalles del Servicio:\n" +
+                                    "FROM: " + from + "\n" +
+                                    "TO: " + to + "\n" +
+                                    "DATE: " + date + "\n" +
+                                    "Servicio: " + servicio + "\n" +
+                                    "Precio: " + precio + "\n\n" +
+                                    "Información del Pasajero:\n" +
+                                    "Nombre: " + nombre + "\n" +
+                                    "Teléfono: " + telefono;
+
+                        // Enviar el mensaje a través de la API de WhatsApp
+                        var url = 'INSERTAR URL AQUI';
+                        var parametros = {
+                            appkey: 'INSERTAR API AQUI',
+                            authkey: 'INSERTAR AUTENTICACION AQUI',
+                            to: telefono, // Utilizar el número de teléfono ingresado
+                            message: mensaje,
+                            sandbox: 'false'
+                        };
+
+                        // Realizar la petición AJAX utilizando Fetch
+                        fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(parametros)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Mostrar alerta de "Solicitud Correcta"
+                            alert("Solicitud Correcta");
+                            console.log(data); // Puedes omitir esta línea si no necesitas imprimir la respuesta en la consola
+                        })
+                        .catch(error => {
+                            console.error('Error al enviar el mensaje:', error);
+                        });
+                    }
+                        </script>
+                        
+				</div>
+			</div>
+		</div>
+<!--==============================footer=================================-->
+		<footer>
+			<div class="container_12">
+				<div class="grid_12">
+					<div class="f_phone"><span>Llámanos:</span> + 1800 559 6580</div>
+					<div class="socials">
+						<a href="#" class="fa fa-twitter"></a>
+						<a href="#" class="fa fa-facebook"></a>
+						<a href="#" class="fa fa-google-plus"></a>
+					</div>
+					<div class="copy">
+						<div class="st1">
+						<div class="brand">Your<span class="color1">T</span>axi </div>
+						&copy; 2023	| <a href="#">Política de Privacidad</a> </div> Sitio web diseñado por Lozano  Y Santamaria <a href="http://www.templatemonster.com/" rel="nofollow"></a>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</footer>
+	</body>
+</html>
